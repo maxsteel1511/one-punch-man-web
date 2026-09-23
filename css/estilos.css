@@ -51,6 +51,7 @@ body.fondo-inicio {
   background-size: cover;
 }
 
+
 /* Fondo específico para Personajes (personajes.html) */
 body.fondo-personajes {
   background: url("../imagen/fondo_1_edge.jpg") no-repeat center center fixed;
@@ -72,6 +73,16 @@ body.fondo-galeria {
 body.fondo-contacto {
   background: url("../imagen/fondo_4_edge.jpg") no-repeat center center fixed;
   background-size: cover;
+}
+/* En móvil, "fixed" rompe el ajuste del fondo en todas las páginas — pasamos a "scroll" */
+@media (max-width: 900px) {
+  body.fondo-inicio,
+  body.fondo-personajes,
+  body.fondo-historia,
+  body.fondo-galeria,
+  body.fondo-contacto {
+    background-attachment: scroll;
+  }
 }
 
 img{ max-width: 100%; display: block; }
