@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-hidden="true">
+  <g stroke="#0d0d0d" stroke-width="4" opacity="0.85">
+    <line x1="300" y1="300" x2="300" y2="10"/>
+    <line x1="300" y1="300" x2="300" y2="590"/>
+    <line x1="300" y1="300" x2="10" y2="300"/>
+    <line x1="300" y1="300" x2="590" y2="300"/>
+    <line x1="300" y1="300" x2="90" y2="90"/>
+    <line x1="300" y1="300" x2="510" y2="90"/>
+    <line x1="300" y1="300" x2="90" y2="510"/>
+    <line x1="300" y1="300" x2="510" y2="510"/>
+    <line x1="300" y1="300" x2="180" y2="30"/>
+    <line x1="300" y1="300" x2="420" y2="30"/>
+    <line x1="300" y1="300" x2="30" y2="180"/>
+    <line x1="300" y1="300" x2="30" y2="420"/>
+    <line x1="300" y1="300" x2="570" y2="180"/>
+    <line x1="300" y1="300" x2="570" y2="420"/>
+    <line x1="300" y1="300" x2="180" y2="570"/>
+    <line x1="300" y1="300" x2="420" y2="570"/>
+  </g>
+  <circle cx="300" cy="300" r="70" fill="#f2c14e" stroke="#0d0d0d" stroke-width="5"/>
+  <text x="300" y="315" font-family="Arial, sans-serif" font-weight="900" font-size="40" fill="#0d0d0d" text-anchor="middle">OK</text>
+</svg>

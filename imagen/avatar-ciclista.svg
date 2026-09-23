@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Avatar ilustrativo">
+  <defs>
+    <pattern id="dots-B" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="rgba(0,0,0,0.10)"/>
+    </pattern>
+  </defs>
+  <rect x="3" y="3" width="194" height="194" fill="#d1373f" stroke="#0d0d0d" stroke-width="6"/>
+  <rect x="3" y="3" width="194" height="194" fill="url(#dots-B)"/>
+  <circle cx="100" cy="100" r="72" fill="#f5f2e8" stroke="#0d0d0d" stroke-width="5"/>
+  <circle cx="100" cy="100" r="30" fill="none" stroke="#0d0d0d" stroke-width="8"/><path d="M100 70 v60 M70 100 h60 M79 79 l42 42 M121 79 l-42 42" stroke="#0d0d0d" stroke-width="4"/>
+  <text x="14" y="188" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#0d0d0d">B</text>
+</svg>

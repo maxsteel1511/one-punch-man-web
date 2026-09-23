@@ -1,0 +1,744 @@
+/* =========================================================
+   ONE PUNCH-MAN | Asociación de Héroes — Hoja de estilos
+   Sistema de diseño: "panel de cómic" — página crema tipo
+   manga, tinta negra, y dos acentos: amarillo (traje) y
+   rojo (guantes/botas). Bordes gruesos y esquinas rectas
+   en vez de tarjetas redondeadas genéricas.
+   ========================================================= */
+
+/* ---------- 1. Tokens de diseño ---------- */
+:root{
+  --tinta: #0d0d0d;         /* negro tinta */
+  --papel: #f5f2e8;         /* crema tipo papel de manga */
+  --papel-2: #ece7d8;       /* crema un poco más oscuro, para paneles alternos */
+  --amarillo: #f2c14e;      /* traje de Saitama */
+  --rojo: #d1373f;          /* guantes / botas */
+  --gris: #4a4a4a;          /* gris ceniza para texto secundario */
+  --gris-claro: #8c8c86;
+
+  --fuente-impacto: "Bebas Neue", "Arial Narrow", sans-serif;
+  --fuente-base: "Inter", "Segoe UI", Arial, sans-serif;
+
+  --borde: 3px solid var(--tinta);
+  --borde-grueso: 5px solid var(--tinta);
+
+  --espacio-1: 0.5rem;
+  --espacio-2: 1rem;
+  --espacio-3: 1.75rem;
+  --espacio-4: 3rem;
+  --espacio-5: 5rem;
+
+  --ancho-maximo: 1180px;
+}
+
+/* ---------- 2. Reset base ---------- */
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+ /* Fondo predeterminado (por si alguna página no tiene clase específica) */
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--fuente-base);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fondo específico para el Inicio (index.html) */
+body.fondo-inicio {
+  background: url("../imagen/fondo_5_edge.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Fondo específico para Personajes (personajes.html) */
+body.fondo-personajes {
+  background: url("../imagen/fondo_1_edge.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+/* Fondo específico para Historia (historia.html) */
+body.fondo-historia {
+  background: url("../imagen/fondo_2_edge.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Fondo específico para Galería (galeria.html) */
+body.fondo-galeria {
+  background: url("../imagen/fondo_3_edge.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Fondo específico para Contacto (contacto.html) */
+body.fondo-contacto {
+  background: url("../imagen/fondo_4_edge.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+img{ max-width: 100%; display: block; }
+a{ color: inherit; text-decoration: none; }
+ul{ list-style: none; margin: 0; padding: 0; }
+h1,h2,h3,h4{ margin: 0; font-weight: 700; }
+p{ margin: 0 0 var(--espacio-2); color: var(--gris); }
+button{ font-family: inherit; cursor: pointer; }
+input, textarea{ font-family: inherit; }
+
+.contenedor{
+  width: 100%;
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0 var(--espacio-3);
+}
+
+:focus-visible{
+  outline: 3px solid var(--rojo);
+  outline-offset: 2px;
+}
+
+.titulo-impacto{
+  font-family: var(--fuente-impacto);
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+}
+
+.etiqueta-seccion{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--rojo);
+  font-weight: 700;
+  margin-bottom: var(--espacio-1);
+}
+.etiqueta-seccion::before{
+  content: "";
+  width: 10px; height: 10px;
+  background: var(--rojo);
+  border: 2px solid var(--tinta);
+  display: inline-block;
+}
+
+/* ---------- 3. Encabezado / navegación (Flexbox) ---------- */
+.encabezado{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--papel);
+  border-bottom: var(--borde-grueso);
+}
+.barra-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-2);
+  padding: 0.7rem 0;
+}
+.marca{
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.marca img{ width: 150px; height: 50px; }
+.marca .nombre-marca{
+  font-family: var(--fuente-impacto);
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+}
+.marca .nombre-marca span{ color: var(--rojo); }
+
+.nav-principal{
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+}
+.nav-principal > ul{
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+}
+.nav-principal a.enlace-nav{
+  font-weight: 600;
+  padding: 0.4rem 0.1rem;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.nav-principal a.enlace-nav:hover,
+.nav-principal a.enlace-nav:focus-visible{
+  border-color: var(--rojo);
+}
+.nav-principal a.enlace-nav.activo{
+  border-color: var(--rojo);
+  color: var(--rojo);
+}
+
+/* Submenú desplegable (segundo nivel) */
+.tiene-submenu{ position: relative; }
+.tiene-submenu > a.enlace-nav::after{
+  content: "▾";
+  margin-left: 0.35rem;
+  font-size: 0.7em;
+}
+.submenu{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  background: var(--papel);
+  border: var(--borde);
+  box-shadow: 6px 6px 0 var(--tinta);
+  padding: 0.4rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+}
+.tiene-submenu:hover .submenu,
+.tiene-submenu:focus-within .submenu{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.submenu li a{
+  display: block;
+  padding: 0.6rem 1rem;
+  font-weight: 500;
+  border-left: 4px solid transparent;
+}
+.submenu li a:hover,
+.submenu li a:focus-visible{
+  background: var(--papel-2);
+  border-left-color: var(--rojo);
+}
+
+.boton-menu-movil{
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: var(--borde);
+  padding: 0.5rem 0.6rem;
+}
+.boton-menu-movil span{
+  width: 22px; height: 3px; background: var(--tinta); display:block;
+}
+
+/* ---------- 4. Botones ---------- */
+.boton{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border: var(--borde);
+  font-weight: 700;
+  background: var(--papel);
+  box-shadow: 4px 4px 0 var(--tinta);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.boton:hover, .boton:focus-visible{
+  transform: translate(-2px,-2px);
+  box-shadow: 6px 6px 0 var(--tinta);
+}
+.boton:active{
+  transform: translate(0,0);
+  box-shadow: 2px 2px 0 var(--tinta);
+}
+.boton-primario{ background: var(--amarillo); }
+.boton-secundario{ background: var(--rojo); color: var(--papel); }
+.boton-secundario p, .boton-secundario{ color: var(--papel); }
+
+/* ---------- 5. Hero ---------- */
+
+.hero .contenedor{
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-5);
+  padding-top: var(--espacio-5);
+  padding-bottom: var(--espacio-5);
+  flex-wrap: wrap;
+}
+.hero-texto{ flex: 1 1 420px; }
+.hero-texto .etiqueta-seccion{ color: var(--tinta); }
+.hero-texto h1{
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  margin-bottom: var(--espacio-2);
+}
+.hero-texto h1 .resalte{
+  color: var(--papel);
+  background: var(--rojo);
+  padding: 0 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.hero-texto p.parrafo-intro{
+  font-size: 1.1rem;
+  max-width: 46ch;
+  color: var(--gris);
+}
+.hero-acciones{
+  display: flex;
+  gap: var(--espacio-2);
+  flex-wrap: wrap;
+  margin-top: var(--espacio-3);
+}
+.hero-imagen{
+  flex: 1 1 280px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-imagen img{ animation: none; }
+}
+
+
+.franja-datos{
+  display: flex;
+  flex-wrap: wrap;
+  border-top: var(--borde);
+}
+.dato{
+  flex: 1 1 200px;
+  padding: var(--espacio-3);
+  border-right: var(--borde);
+  text-align: center;
+}
+.dato:last-child{ border-right: none; }
+.dato .numero{
+  font-family: var(--fuente-impacto);
+  font-size: 2.6rem;
+  display: block;
+  color: var(--rojo);
+}
+.dato .etiqueta{ font-size: 0.9rem; color: var(--gris); }
+
+/* ---------- 6. Secciones genéricas ---------- */
+.seccion{ padding: var(--espacio-5) 0; border-bottom: var(--borde-grueso); }
+.seccion-alterna{  background-image: url("../imagen/TU_IMAGEN.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;}
+.encabezado-seccion{
+  max-width: 60ch;
+  margin-bottom: var(--espacio-4);
+}
+.encabezado-seccion h2{ font-size: clamp(1.9rem, 4vw, 2.6rem); }
+
+/* Sobre la serie */
+.grid-sobre{
+  display: flex;
+  gap: var(--espacio-4);
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.grid-sobre .columna{ flex: 1 1 320px; }
+.lista-rasgos{
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+.rasgo{
+  display: flex;
+  gap: var(--espacio-2);
+  align-items: flex-start;
+  padding: var(--espacio-2);
+  border: var(--borde);
+  background: var(--papel);
+}
+.rasgo .icono{
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.rasgo h3{ font-size: 1.05rem; margin-bottom: 0.2rem; }
+
+/* ---------- 7. Personajes (cards con Flexbox) ---------- */
+.grid-personajes{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-3);
+}
+.tarjeta-personaje{
+  flex: 1 1 250px;
+  max-width: 290px;
+  background: var(--papel);
+  border: var(--borde);
+  box-shadow: 5px 5px 0 var(--tinta);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease;
+}
+.tarjeta-personaje:hover{ transform: translateY(-4px); }
+.tarjeta-personaje .avatar-wrap{
+  border-bottom: var(--borde);
+  background: var(--papel-2);
+  padding: var(--espacio-2);
+  height: 260px; /* <--- Agrega esta línea para fijar la altura del recuadro */
+  display: flex; /* <--- Agrega para centrar por seguridad */
+  align-items: center; /* <--- Agrega */
+  justify-content: center; /* <--- Agrega */
+  overflow: hidden; /* <--- Oculta lo que sobre si la foto es muy grande */
+}
+.tarjeta-personaje .avatar-wrap img{ width: 100%; height: 100%; object-fit: cover; }
+.tarjeta-personaje .info{
+  padding: var(--espacio-2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+.tarjeta-personaje .rango{
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--rojo);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.tarjeta-personaje h3{ font-size: 1.2rem; }
+.tarjeta-personaje p{ font-size: 0.92rem; margin-bottom: 0; }
+
+/* ---------- 8. Historia / Timeline ---------- */
+.linea-tiempo{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: var(--borde-grueso);
+  margin-left: 10px;
+}
+.evento-tiempo{
+  position: relative;
+  padding: var(--espacio-2) 0 var(--espacio-3) var(--espacio-4);
+}
+.evento-tiempo::before{
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: 1.6rem;
+  width: 20px; height: 20px;
+  background: var(--amarillo);
+  border: 3px solid var(--tinta);
+  border-radius: 50%;
+}
+.evento-tiempo .arco-num{
+  font-family: var(--fuente-impacto);
+  color: var(--gris-claro);
+  font-size: 1rem;
+}
+.evento-tiempo h3{ font-size: 1.25rem; margin-bottom: 0.3rem; }
+
+/* ---------- 9. Galería + filtros + lightbox ---------- */
+.filtros-galeria{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: var(--espacio-3);
+}
+.boton-filtro{
+  border: var(--borde);
+  background: var(--papel);
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.boton-filtro.activo{
+  background: var(--tinta);
+  color: var(--papel);
+}
+.grid-galeria{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+}
+.item-galeria{
+  flex: 1 1 200px;
+  max-width: 230px;
+  border: var(--borde);
+  background: var(--papel);
+  cursor: pointer;
+  padding: var(--espacio-1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.item-galeria:hover{
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0 var(--tinta);
+}
+.item-galeria img{ width: 100%;height: 200px; /* <--- Agrega esta línea para que todas midan exactamente 200px de alto */
+  object-fit: cover; /* <--- Mantiene la proporción y evita que se estiren de forma fea */ }
+.item-galeria .pie-item{
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 0.4rem;
+}
+.item-galeria.oculto{ display: none; }
+
+.superposicion-lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(13,13,13,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacio-3);
+  z-index: 200;
+}
+.superposicion-lightbox.oculto{ display: none; }
+.caja-lightbox{
+  background: var(--papel);
+  border: var(--borde-grueso);
+  max-width: 560px;
+  width: 100%;
+  padding: var(--espacio-2);
+  position: relative;
+}
+.caja-lightbox img{ width: 100%; border: var(--borde); margin-bottom: var(--espacio-1); }
+.cerrar-lightbox{
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 40px; height: 40px;
+  background: var(--rojo);
+  color: var(--papel);
+  border: var(--borde);
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ---------- 10. Contacto ---------- */
+.grid-contacto{
+  display: flex;
+  gap: var(--espacio-4);
+  flex-wrap: wrap;
+}
+.panel-formulario{
+  flex: 1 1 380px;
+  background: var(--papel);
+  border: var(--borde);
+  box-shadow: 6px 6px 0 var(--tinta);
+  padding: var(--espacio-3);
+}
+.campo{
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: var(--espacio-2);
+}
+.campo label{ font-weight: 700; font-size: 0.92rem; }
+.campo input, .campo textarea{
+  border: var(--borde);
+  padding: 0.65rem 0.75rem;
+  background: var(--papel);
+  font-size: 1rem;
+}
+.campo input:focus, .campo textarea:focus{
+  outline: none;
+  border-color: var(--rojo);
+}
+.mensaje-error{
+  color: var(--rojo);
+  font-size: 0.82rem;
+  min-height: 1.1em;
+}
+.campo.con-error input, .campo.con-error textarea{ border-color: var(--rojo); }
+.aviso-formulario{
+  margin-top: var(--espacio-2);
+  padding: var(--espacio-2);
+  border: var(--borde);
+  background: var(--papel-2);
+  font-weight: 600;
+  display: none;
+}
+.aviso-formulario.visible{ display: block; }
+
+.panel-info-contacto{
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+.tarjeta-info{
+  border: var(--borde);
+  background: var(--papel-2);
+  padding: var(--espacio-2);
+}
+.tarjeta-info h3{ margin-bottom: 0.3rem; font-size: 1.05rem; }
+
+/* ---------- 11. Pie de página ---------- */
+.pie-pagina{
+  background: var(--tinta);
+  color: var(--papel);
+  padding: var(--espacio-4) 0 var(--espacio-2);
+}
+.pie-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-4);
+  padding-bottom: var(--espacio-3);
+  border-bottom: 1px solid rgba(245,242,232,0.2);
+}
+.pie-grid .columna-pie{ flex: 1 1 220px; }
+.pie-grid h4{ margin-bottom: var(--espacio-1); color: var(--amarillo); }
+.pie-grid ul{ display: flex; flex-direction: column; gap: 0.45rem; }
+.pie-grid a:hover{ color: var(--amarillo); }
+.redes-sociales{
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.redes-sociales a{
+  border: 2px solid var(--papel);
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.redes-sociales a:hover{ background: var(--amarillo); color: var(--tinta); border-color: var(--amarillo); }
+.pie-legal{
+  padding-top: var(--espacio-2);
+  font-size: 0.8rem;
+  color: var(--gris-claro);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---------- 12. Responsive ---------- */
+@media (max-width: 900px){
+  .nav-principal{
+    position: fixed;
+    inset: 70px 0 0 0;
+    background: var(--papel);
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--espacio-3);
+    border-top: var(--borde);
+    transform: translateX(100%);
+    transition: transform 0.2s ease;
+    overflow-y: auto;
+  }
+  .nav-principal.abierto{ transform: translateX(0); }
+  .nav-principal > ul{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .nav-principal a.enlace-nav{
+    display: block;
+    padding: 0.9rem 0.2rem;
+    border-bottom: 1px solid var(--papel-2);
+  }
+  .submenu{
+    position: static;
+    box-shadow: none;
+    opacity: 1; visibility: visible; transform: none;
+    display: none;
+    border: none;
+    border-left: 4px solid var(--amarillo);
+    margin-left: 0.6rem;
+  }
+  .tiene-submenu.submenu-abierto .submenu{ display: block; }
+  .tiene-submenu > a.enlace-nav::after{ float: right; }
+  .boton-menu-movil{ display: flex; }
+}
+
+@media (max-width: 640px){
+  .contenedor{ padding: 0 var(--espacio-2); }
+  .seccion{ padding: var(--espacio-4) 0; }
+  .dato{ flex: 1 1 50%; border-bottom: var(--borde); }
+  .pie-legal{ flex-direction: column; text-align: center; }
+}
+@keyframes zoomFondo {
+  0% {
+    background-size: 100%;
+  }
+
+  50% {
+    background-size: 108%;
+  }
+
+  100% {
+    background-size: 100%;
+  }
+}
+
+body.fondo-personajes {
+  background: url("../imagen/fondo_edge.webp") no-repeat center center fixed;
+  background-size: 100%;
+  animation: zoomFondo 20s ease-in-out infinite;
+}
+/* Animación para todos los fondos */
+body.fondo-inicio,
+body.fondo-personajes,
+body.fondo-historia,
+body.fondo-galeria,
+body.fondo-contacto {
+  animation: zoomFondo 20s ease-in-out infinite;
+}
+
+/* ---------- 13. Legibilidad sobre fondo (Historia) ---------- */
+/* No se toca la imagen de fondo: se agrega un panel semitransparente
+   detrás del texto, con el mismo lenguaje visual (papel + borde + sombra)
+   que ya usan las tarjetas de personajes. */
+#historia .encabezado-seccion{
+  background: rgba(245, 242, 232, 0.92);
+  border: var(--borde);
+  box-shadow: 6px 6px 0 var(--tinta);
+  padding: var(--espacio-3);
+  backdrop-filter: blur(2px);
+}
+ 
+#historia .evento-tiempo{
+  background: rgba(245, 242, 232, 0.92);
+  border: var(--borde);
+  box-shadow: 4px 4px 0 var(--tinta);
+  margin-bottom: var(--espacio-2);
+  padding: var(--espacio-2) var(--espacio-2) var(--espacio-2) calc(var(--espacio-4) + var(--espacio-1));
+  backdrop-filter: blur(2px);
+}
+#historia .evento-tiempo:last-child{ margin-bottom: 0; }
+
+#personajes .encabezado-seccion{
+  background: rgba(245, 242, 232, 0.92);
+  border: var(--borde);
+  box-shadow: 6px 6px 0 var(--tinta);
+  padding: var(--espacio-3);
+  backdrop-filter: blur(2px);
+}
+
+#personajes h3.titulo-impacto{
+  display: inline-block;
+  background: rgba(245, 242, 232, 0.92);
+  border: var(--borde);
+  box-shadow: 4px 4px 0 var(--tinta);
+  padding: 0.5rem 1rem;
+}
+
+/* ---------- 15. Legibilidad sobre fondo (Galería, Contacto, Home) ---------- */
+#galeria .encabezado-seccion,
+#contacto .encabezado-seccion{
+  background: rgba(245, 242, 232, 0.92);
+  border: var(--borde);
+  box-shadow: 6px 6px 0 var(--tinta);
+  padding: var(--espacio-3);
+  backdrop-filter: blur(2px);
+}
+
+#sobre .grid-sobre > .columna:first-child{
+  background: rgba(245, 242, 232, 0.92);
+  border: var(--borde);
+  box-shadow: 6px 6px 0 var(--tinta);
+  padding: var(--espacio-3);
+  backdrop-filter: blur(2px);
+}
+
+.hero-texto{
+  background: rgba(245, 242, 232, 0.92);
+  border: var(--borde);
+  box-shadow: 6px 6px 0 var(--tinta);
+  padding: var(--espacio-3);
+  backdrop-filter: blur(2px);
+}
+
+.franja-datos{
+  background: rgba(245, 242, 232, 0.92);
+  backdrop-filter: blur(2px);
+}

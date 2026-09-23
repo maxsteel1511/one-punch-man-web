@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-hidden="true">
+  <defs>
+    <pattern id="ht" width="14" height="14" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="2.6" fill="#0d0d0d" opacity="0.9"/>
+    </pattern>
+  </defs>
+  <rect width="200" height="200" fill="url(#ht)"/>
+</svg>

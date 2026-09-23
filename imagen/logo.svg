@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Logo Asociacion de Heroes">
+  <rect x="4" y="4" width="112" height="112" fill="#f2c14e" stroke="#0d0d0d" stroke-width="6"/>
+  <path d="M40 78 h12 v-16 a9 9 0 0 1 18 0 v16 h7 v-21 a9 9 0 0 1 18 0 v21 h6 v-12 a9 9 0 0 1 18 0"
+        fill="none" stroke="#0d0d0d" stroke-width="0"/>
+  <path d="M35 82 h16 v-20 a11 11 0 0 1 22 0 v20 h9 v-27 a11 11 0 0 1 22 0 v27"
+        fill="none"/>
+  <g transform="translate(14,10) scale(0.8)">
+    <path d="M40 95 h16 v-20 a11 11 0 0 1 22 0 v20 h9 v-27 a11 11 0 0 1 22 0 v27 h9 v-16 a11 11 0 0 1 22 0 v38 a38 38 0 0 1 -38 38 h-24 a38 38 0 0 1 -38 -38 z" fill="#0d0d0d"/>
+  </g>
+</svg>

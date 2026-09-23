@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería | One Punch-Man</title>
+<meta name="description" content="Galería de ilustraciones originales de personajes de One Punch-Man con filtros y vista ampliada.">
+<link rel="icon" href="imagen/logo_nuevo_edge.png" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="fondo-galeria">
+<!-- ===================== ENCABEZADO / NAV ===================== -->
+<header class="encabezado">
+  <nav class="barra-nav contenedor" aria-label="Navegación principal">
+    <a href="index.html" class="marca">
+      <img src="imagen/logo_nuevo_edge.png" alt="Emblema de la Asociación de Héroes">
+    </a>
+
+    <button class="boton-menu-movil" id="botonMenuMovil" aria-expanded="false" aria-controls="navPrincipal" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-principal" id="navPrincipal">
+      <ul>
+        <li><a class="enlace-nav" href="index.html">Home</a></li>
+
+        <li class="tiene-submenu">
+          <a class="enlace-nav" href="personajes.html" id="togglePersonajes">Personajes</a>
+          <ul class="submenu">
+            <li><a href="personajes.html#personajes-heroes-s">Héroes Clase S</a></li>
+            <li><a href="personajes.html#personajes-heroes-otros">Héroes Clase A y B</a></li>
+            <li><a href="personajes.html#personajes-villanos">Villanos y amenazas</a></li>
+          </ul>
+        </li>
+
+        <li><a class="enlace-nav" href="historia.html">Historia</a></li>
+        <li><a class="enlace-nav activo" href="galeria.html" aria-current="page">Galería</a></li>
+        <li><a class="enlace-nav" href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="seccion seccion-alterna" id="galeria" style="border-top:none;">
+    <div class="contenedor">
+      <div class="encabezado-seccion">
+        <span class="etiqueta-seccion">Archivo visual</span>
+        <h2>Galería</h2>
+        <p>Ilustraciones originales inspiradas en la serie. Filtra por categoría y haz clic en cualquier pieza para verla en grande.</p>
+      </div>
+
+      <div class="filtros-galeria" role="group" aria-label="Filtrar galería por categoría">
+        <button class="boton-filtro activo" data-filtro="todos">Todos</button>
+        <button class="boton-filtro" data-filtro="heroe">Héroes</button>
+        <button class="boton-filtro" data-filtro="villano">Villanos</button>
+      </div>
+
+      <div class="grid-galeria" id="gridGaleria">
+        <figure class="item-galeria" data-categoria="heroe" tabindex="0">
+          <img src="imagen/saitama_nuevo_edge.jpg" alt="Saitama, héroe de Clase S" data-titulo="Saitama — Clase S">
+          <figcaption class="pie-item">Saitama</figcaption>
+        </figure>
+        <figure class="item-galeria" data-categoria="heroe" tabindex="0">
+          <img src="imagen/genos_nuevo_edge.webp" alt="Genos, héroe cyborg" data-titulo="Genos — Clase A">
+          <figcaption class="pie-item">Genos</figcaption>
+        </figure>
+        <figure class="item-galeria" data-categoria="heroe" tabindex="0">
+          <img src="imagen/mumen_nuevo_edge.webp" alt="Mumen Rider en su bicicleta" data-titulo="Mumen Rider — Clase B">
+          <figcaption class="pie-item">Mumen Rider</figcaption>
+        </figure>
+        <figure class="item-galeria" data-categoria="heroe" tabindex="0">
+          <img src="imagen/Bang_nuevo_edge.jpg" alt="Bang, maestro marcial" data-titulo="Bang — Clase S">
+          <figcaption class="pie-item">Bang</figcaption>
+        </figure>
+        <figure class="item-galeria" data-categoria="heroe" tabindex="0">
+          <img src="imagen/tornado del terror_nuevo_edge.jpg" alt="Tornado del Terror" data-titulo="Tornado del Terror — Clase S">
+          <figcaption class="pie-item">Tornado del Terror</figcaption>
+        </figure>
+        <figure class="item-galeria" data-categoria="villano" tabindex="0">
+          <img src="imagen/garu_nuevo_edge.jpg" alt="Garou, el cazador de héroes" data-titulo="Garou — Amenaza">
+          <figcaption class="pie-item">Garou</figcaption>
+        </figure>
+        <figure class="item-galeria" data-categoria="villano" tabindex="0">
+          <img src="imagen/monstruo mutante_nuevo_edge.jpg" alt="Monstruo mutante" data-titulo="Monstruo Mutante — Amenaza">
+          <figcaption class="pie-item">Monstruo Mutante</figcaption>
+        </figure>
+        <figure class="item-galeria" data-categoria="villano" tabindex="0">
+          <img src="imagen/invasor alienigena_nuevo_edge.jpg" alt="Invasor alienígena" data-titulo="Invasor Alienígena — Amenaza">
+          <figcaption class="pie-item">Invasor Alienígena</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="superposicion-lightbox oculto" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de imagen">
+      <div class="caja-lightbox">
+        <button class="cerrar-lightbox" id="cerrarLightbox" aria-label="Cerrar">✕</button>
+        <img src="" alt="" id="imagenLightbox">
+        <p id="tituloLightbox" style="margin:0; font-weight:700;"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== PIE DE PAGINA ===================== -->
+<footer class="pie-pagina">
+  <div class="contenedor">
+    <div class="pie-grid">
+      <div class="columna-pie">
+        <h4>Asociación de Héroes</h4>
+        <p style="color:#cfcfc7;">Portal tributo (fan-made) dedicado a la serie One Punch-Man, sin fines comerciales.</p>
+        <div class="redes-sociales">
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">X</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
+        </div>
+      </div>
+      <div class="columna-pie">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="personajes.html">Personajes</a></li>
+          <li><a href="historia.html">Historia</a></li>
+          <li><a href="galeria.html">Galería</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="columna-pie">
+        <h4>Personajes destacados</h4>
+        <ul>
+          <li><a href="personajes.html#personajes-heroes-s">Héroes Clase S</a></li>
+          <li><a href="personajes.html#personajes-heroes-otros">Héroes Clase A y B</a></li>
+          <li><a href="personajes.html#personajes-villanos">Villanos y amenazas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie-legal">
+      <span>© 2026 Portal fan-made de One Punch-Man. Todos los derechos de la obra original pertenecen a ONE y Yusuke Murata.</span>
+      <span>Hecho con HTML5, CSS3 y JavaScript puro.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
