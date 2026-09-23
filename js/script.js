@@ -20,6 +20,23 @@ document.addEventListener('DOMContentLoaded', function () {
       botonMenu.setAttribute('aria-expanded', abierto ? 'true' : 'false');
     });
   }
+  /* Submenú de "Personajes" en móvil: el primer toque abre/cierra el
+   submenú en vez de navegar directo; los enlaces internos del
+   submenú siguen navegando normalmente. */
+var enlacesConSubmenu = document.querySelectorAll('.tiene-submenu > a.enlace-nav');
+enlacesConSubmenu.forEach(function (enlace) {
+  enlace.addEventListener('click', function (evento) {
+    if (window.matchMedia('(max-width: 900px)').matches) {
+      var padre = enlace.closest('.tiene-submenu');
+      var yaAbierto = padre.classList.contains('submenu-abierto');
+      if (!yaAbierto) {
+        evento.preventDefault();
+        padre.classList.add('submenu-abierto');
+      }
+      // si ya estaba abierto, el segundo toque deja navegar normalmente
+    }
+  });
+});
 
   /* Nota: el enlace "Personajes" navega directamente a personajes.html
      en cualquier dispositivo (ya no intercepta el clic). El submenú
