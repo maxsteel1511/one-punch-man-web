@@ -47,13 +47,14 @@ enlacesConSubmenu.forEach(function (enlace) {
   /* Cerrar el menú móvil al elegir cualquier enlace de navegación */
   var enlacesNav = navPrincipal ? navPrincipal.querySelectorAll('a') : [];
   enlacesNav.forEach(function (enlace) {
-    enlace.addEventListener('click', function () {
-      if (window.matchMedia('(max-width: 900px)').matches) {
-        navPrincipal.classList.remove('abierto');
-        botonMenu.setAttribute('aria-expanded', 'false');
-      }
-    });
+  enlace.addEventListener('click', function (evento) {
+    if (evento.defaultPrevented) return; // se está abriendo el submenú, no cerrar el menú
+    if (window.matchMedia('(max-width: 900px)').matches) {
+      navPrincipal.classList.remove('abierto');
+      botonMenu.setAttribute('aria-expanded', 'false');
+    }
   });
+});
 
   /* ---------- 2. Galería: filtros ---------- */
   var botonesFiltro = document.querySelectorAll('.boton-filtro');
