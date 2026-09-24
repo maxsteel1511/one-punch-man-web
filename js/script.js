@@ -198,3 +198,13 @@ enlacesConSubmenu.forEach(function (enlace) {
   }
 
 });
+
+/* ---------- 5. Efecto parallax en el fondo ---------- */
+var factorParallax = 0.35; // 0 = fondo fijo, 1 = se mueve igual que el scroll. Subí este número para más movimiento.
+
+function actualizarParallax() {
+  document.body.style.setProperty('--parallax-y', (window.scrollY * factorParallax) + 'px');
+}
+
+window.addEventListener('scroll', actualizarParallax, { passive: true });
+actualizarParallax();

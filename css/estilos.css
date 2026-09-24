@@ -70,6 +70,8 @@ body.fondo-contacto::before {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+   transform: translateY(var(--parallax-y, 0px));
+  will-change: transform;
 }
 
 body.fondo-inicio::before      { background-image: url("../imagen/fondo_5_edge.png"); }
