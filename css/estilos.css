@@ -45,35 +45,40 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Fondo específico para el Inicio (index.html) */
-body.fondo-inicio {
-  background: url("../imagen/fondo_5_edge.png") no-repeat center center fixed;
-  background-size: cover;
-}
 
 
-/* Fondo específico para Personajes (personajes.html) */
-body.fondo-personajes {
-  background: url("../imagen/fondo_1_edge.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
-/* Fondo específico para Historia (historia.html) */
-body.fondo-historia {
-  background: url("../imagen/fondo_2_edge.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
+/* Reemplaza el bloque de "12. Responsive" que agregamos antes (el de scroll) por esto */
 
-/* Fondo específico para Galería (galeria.html) */
-body.fondo-galeria {
-  background: url("../imagen/fondo_3_edge.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
-
-/* Fondo específico para Contacto (contacto.html) */
+body.fondo-inicio,
+body.fondo-personajes,
+body.fondo-historia,
+body.fondo-galeria,
 body.fondo-contacto {
-  background: url("../imagen/fondo_4_edge.jpg") no-repeat center center fixed;
+  background: none; /* ya no ponemos el fondo directo acá */
+  position: relative;
+}
+
+body.fondo-inicio::before,
+body.fondo-personajes::before,
+body.fondo-historia::before,
+body.fondo-galeria::before,
+body.fondo-contacto::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
 }
+
+body.fondo-inicio::before      { background-image: url("../imagen/fondo_5_edge.png"); }
+body.fondo-personajes::before  { background-image: url("../imagen/fondo_1_edge.jpg"); }
+body.fondo-historia::before    { background-image: url("../imagen/fondo_2_edge.jpg"); }
+body.fondo-galeria::before     { background-image: url("../imagen/fondo_3_edge.jpg"); }
+body.fondo-contacto::before    { background-image: url("../imagen/fondo_4_edge.jpg"); }
+
+
 /* En móvil, "fixed" rompe el ajuste del fondo en todas las páginas — pasamos a "scroll" */
 @media (max-width: 900px) {
   body.fondo-inicio,
